@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class TestBench {
+
+	public static void main(String[] args) {
+		String beginWord = "hit";
+		String endWord = "cog";
+		List<String> wordList = Arrays.asList("hot","dot","dog","lot","log","cog");
+		List<List<String>> result = new ArrayList<>();
+		Set<String> wordSet = new HashSet<>(wordList);
+		Map<String, List<String>> map = new HashMap<>();
+		bfs(beginWord, endWord, wordSet, map);
+		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue());
+		}
+		List<String> list = new ArrayList<>();
+		list.add(beginWord);
+		dfs(beginWord, endWord, map, list, result);
+		System.out.println(result);
+	}
+
+	private static void dfs(String beginWord, String endWord, Map<String, List<String>> map, 
+			List<String> list, List<List<String>> result) {
+		if (beginWord.equals(endWord)) {
+			result.add(new ArrayList<>(list));
+			return;
+		}
+		if (!map.containsKey(beginWord)) return;
+		List<String> children = map.get(beginWord);
+		for (String child : children) {
+			list.add(child);
+			dfs(child, endWord, map, list, result);
+			list.remove(list.size() - 1);
+		}
+	}
+
+	private static void bfs(String beginWord, String endWord, Set<String> wordSet, Map<String, List<String>> map) {
+		Queue<String> queue = new ArrayDeque<>();
+		Set<String> visited = new HashSet<>();
+		queue.offer(beginWord);
+		visited.add(beginWord);
+		boolean found = false;
+		while (!queue.isEmpty() && !found) {
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				String cur = queue.poll();
+				List<String> children = new ArrayList<>();
+				char[] arr = cur.toCharArray();
+				for (int j = 0; j < arr.length; j++) {
+					char tmp = arr[j];
+					for (char c = 'a'; c <= 'z'; c++) {
+						if (c == tmp) continue;
+						arr[j] = c;
+						String newWord = new String(arr);
+						if (newWord.equals(endWord)) {
+							found = true;
+							children.add(newWord);
+						} else {
+							if (wordSet.contains(newWord) && !visited.contains(newWord)) {
+								children.add(newWord);
+								visited.add(newWord);
+								queue.add(newWord);
+							}
+						} 
+						arr[j] = tmp;
+					}
+				}
+				System.out.println(children);
+				map.put(cur, children);
+			}
+		}
+	}
+
+}

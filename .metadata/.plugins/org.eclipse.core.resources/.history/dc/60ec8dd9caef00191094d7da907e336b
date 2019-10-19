@@ -1,0 +1,38 @@
+package hawei;
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Decompression {
+	public static void main(String[] args) {
+		String input = "a3b2";
+		TreeMap<String, Integer> map = new TreeMap<>(new Comparator<Map.Entry<String, Integer>>() {
+			@Override
+			public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
+				if (e1.getValue() == e2.getValue()) {
+					return e1.getKey().compareTo(e2.getKey());
+				}
+				return Integer.compare(e1.getValue(), e2.getValue());
+			}
+		});
+		char[] charArr = input.toCharArray();
+		int start = 0, count = 0;
+		
+		boolean isStart = true;
+		for (int end = 0; end < charArr.length; end++) {
+			char c = charArr[end];
+			if (!Character.isDigit(c)) {
+				isStart = true;
+				continue;
+			} 
+			
+			if (isStart) {
+				list.add(new String(charArr, start, end - start));
+				isStart = false;
+				
+			} 	
+			count = count * 10 + (c - '0');
+		}
+	}
+}

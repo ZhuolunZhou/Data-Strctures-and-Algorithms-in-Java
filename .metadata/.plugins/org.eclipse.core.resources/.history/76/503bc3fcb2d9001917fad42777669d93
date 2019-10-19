@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class TestBench {
+	
+	public static void main(String[] args) {
+		long max = 0;
+		int a = 0;
+		long left = Integer.MAX_VALUE;
+		long right = 1;
+		max = Math.max(max, left + right + a);
+		System.out.println(max);
+	}
+
+	
+}

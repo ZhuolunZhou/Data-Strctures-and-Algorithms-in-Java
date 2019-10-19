@@ -1,0 +1,44 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class TestBench {
+
+	public static void main(String[] args) throws IOException{
+		int n = 5, k = 2;
+		int count = 0;
+        for (int y = 1; y <= n; y++) {
+            int divisor = 0;
+            while (divisor * y + k <= n) {
+                System.out.println("cur x is " + (divisor * y + k));
+            	if ((divisor * y + k) % y >= k) {
+            		System.out.println("x is " + (divisor * y + k) + " y is " + y);
+            		count++;
+                }
+                divisor++;
+            }
+        }
+        System.out.println(count);
+		
+	}
+
+	private static String convertBack(int num) {
+		if (num == 0) return "a";
+		StringBuilder sb = new StringBuilder();
+		while (num > 0) {
+			sb.append((char)('a' + num % 26));
+			num /= 26;
+		}
+		return sb.reverse().toString();
+	}
+
+
+	private static int convert(String s) {
+		int res = 0;
+		for (char c : s.toCharArray()) {
+			res = res * 26 + c - 'a';
+		}
+		return res;
+	}
+
+
+}

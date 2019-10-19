@@ -1,0 +1,103 @@
+package laiOffer;
+import java.util.*;
+
+public class PermutationInString {
+//	public boolean containsPermutation(String s1, String s2) {
+//		char[] charArr = s1.toCharArray();
+//		return findPermutations(charArr, s2, 0);
+//	}
+//	// find each permutations and check whether it is the substring of s2
+//	public boolean findPermutations(char[] s1, String s2, int level) {
+//		if (level == s1.length) {
+//			return hasSubstring(s1, s2);
+//		}
+//		// swap swap
+//		Set<Character> added = new HashSet<>();
+//		for (int i = level; i < s1.length; i++) {
+//			if (added.add(s1[i])) {
+//				swap(s1, i, level);
+//				if (findPermutations(s1, s2, level + 1)) {
+//					return true;
+//				}
+//				swap(s1, i, level);
+//			}
+//		}
+//		return false;
+//	}
+//	
+//	// s1 is one permutation, s2 is the long string
+//	public boolean hasSubstring(char[] s1, String s2) {
+//		int i = 0;
+//		while (i <= s2.length() - s1.length) {
+//			if (equalString(s1, s2, i)) {
+//				return true;
+//			} else {
+//				i++;
+//			}
+//		}
+//		return false;
+//	}
+//	
+//	private boolean equalString(char[] s1, String s2, int index) {
+//		for (int i = 0; i < s1.length; i++) {
+//			if (s1[i] != s2.charAt(index + i)) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
+//	
+//	private void swap(char[] array, int a, int b) {
+//		char temp = array[a];
+//		array[a] = array[b];
+//		array[b] = temp;
+//	}
+	public boolean containsPermutation(String s1, String s2) {
+		// store the characters of s1 in map
+		Map<Character, Integer> map = new HashMap<>();
+		int count = 0; // records number of different characters in s1
+		for (int i = 0; i < s1.length(); i++) {
+			Integer num = map.get(s1.charAt(i));
+			if (num == null) {
+				map.put(s1.charAt(i), 1);
+				count++;
+			} else {
+				map.put(s1.charAt(i), num + 1);
+			}
+		}
+		int slow = 0;
+		for (int fast = 0; fast < s2.length(); fast++) {
+			// handle right border
+			Integer num = map.get(s2.charAt(fast));
+			if (num != null) {
+				map.put(s2.charAt(fast), num - 1);
+				if (num - 1 == 0) {
+					count--;
+				}
+			}
+			// handle left border
+			if (fast >= s1.length()) {
+				Integer num2 = map.get(s2.charAt(slow));
+				if (num2 != null) {
+					map.put(s2.charAt(slow), num2 + 1);
+					if (num2 == 0) {
+						count++;
+					} else if (num2 + 1 == 0) {
+						count--;
+					}
+				}
+				slow++;
+			}
+			if (count == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+
+
+
+
+

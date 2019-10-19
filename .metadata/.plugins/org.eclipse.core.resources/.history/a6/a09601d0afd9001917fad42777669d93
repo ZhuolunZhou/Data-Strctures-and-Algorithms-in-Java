@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class TestBench {
+	static String[] lessThanTwenty = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+			"Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+			"Eighteen", "Nineteen"};
+	static String[] tenth = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+	static String[] base = {"", "Thousand", "Million", "Billion"};
+	public static void main(String[] args) {
+
+		System.out.println(numberToWords(1000));
+		System.out.println(Integer.MAX_VALUE < (long)(Integer.MAX_VALUE) + 1);
+	}
+
+	public static String numberToWords(int num) {
+		if (num == 0) return "Zero";
+		int i = 0; // record the index of current base
+		String result = "";
+		while (num > 0) {
+
+			result = convert(num % 1000) + base[i] + " " + result;
+
+			num /= 1000;
+			i++;
+		}
+		return result.trim();
+	}
+
+	private static String convert(int num) {
+		if (num == 0) { // eliminate extra space if num is 20,30,40,...
+			return "";
+		} else if (num < 20) {
+			return lessThanTwenty[num] + " ";
+		} else if (num < 100) {
+			return tenth[num / 10] + " " + convert(num % 10);
+		} else {
+			return lessThanTwenty[num / 100] + " Hundred " + convert(num % 100);
+		}
+	}
+
+}

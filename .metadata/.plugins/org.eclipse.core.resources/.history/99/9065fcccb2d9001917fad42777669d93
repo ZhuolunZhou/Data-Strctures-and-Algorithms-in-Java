@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class TestBench {
+	
+	public static void main(String[] args) {
+		long max = 0;
+		int a = 1;
+		System.out.println(max + a);
+	}
+
+	
+}

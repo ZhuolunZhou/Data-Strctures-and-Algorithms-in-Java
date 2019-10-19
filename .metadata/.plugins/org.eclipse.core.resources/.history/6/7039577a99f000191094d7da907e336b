@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class TestBench {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String first = scanner.next();
+		String second = scanner.next();
+		int num1 = convert(first);
+		int num2 = convert(second);
+		String res = convertBack(num1 + num2);
+		System.out.println(res);
+		scanner.close();
+	}
+
+	private static String convertBack(int num) {
+		if (num == 0) return "a";
+		StringBuilder sb = new StringBuilder();
+		while (num > 0) {
+			sb.append((char)('a' + num % 26));
+			num /= 26;
+		}
+		return sb.reverse().toString();
+	}
+
+
+	private static int convert(String s) {
+		int res = 0;
+		for (char c : s.toCharArray()) {
+			res = res * 26 + c - 'a';
+		}
+		return res;
+	}
+
+
+}

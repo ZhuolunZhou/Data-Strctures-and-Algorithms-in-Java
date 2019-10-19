@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class TestBench {
+	
+	public static void main(String[] args) {
+		long max = 2;
+		int a = 1;
+		System.out.println(max * a);
+		long left = Integer.MAX_VALUE;
+		long right = 1;
+		max = Math.max(max, left + right + a);
+		System.out.println(max);
+	}
+
+	
+}

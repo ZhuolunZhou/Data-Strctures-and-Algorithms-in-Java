@@ -1,0 +1,59 @@
+package laiOffer;
+import java.util.*;
+
+public class PermutationInString {
+	public boolean containsPermutation(String s1, String s2) {
+		char[] charArr = s1.toCharArray();
+		return findPermutations(charArr, s2, 0);
+	}
+	// find each permutations and check whether it is the substring of s2
+	public boolean findPermutations(char[] s1, String s2, int level) {
+		if (level == s1.length) {
+			return hasSubstring(s1, s2);
+		}
+		// swap swap
+		Set<Character> added = new HashSet<>();
+		for (int i = level; i < s1.length; i++) {
+			if (added.add(s1[i])) {
+				swap(s1, i, level);
+				if (findPermutations(s1, s2, level + 1)) {
+					return true;
+				}
+				swap(s1, i, level);
+			}
+		}
+		return false;
+	}
+	
+	// s1 is one permutation, s2 is the long string
+	private boolean hasSubstring(char[] s1, String s2) {
+		int i = 0;
+		while (i <= s2.length() - s1.length) {
+			if (equalString(s1, s2, i)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean equalString(char[] s1, String s2, int index) {
+		for (int i = 0; i < s1.length; i++) {
+			if (s1[i] != s2.charAt(index + i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private void swap(char[] array, int a, int b) {
+		char temp = array[a];
+		array[a] = array[b];
+		array[b] = temp;
+	}
+}
+
+
+
+
+
+

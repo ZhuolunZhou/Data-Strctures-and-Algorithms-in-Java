@@ -1,0 +1,43 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class TestBench {
+
+	public static void main(String[] args) throws IOException{
+		int n = 88856, k = 768;
+		long count = 0;
+		for (int y = Math.max(1, k); y <= n; y++) {
+            count += n / y * (y - k);
+            if (n % y >= k) {
+                if (k == 0) {
+                    count += n % y;
+                } else {
+                    count += n % y - k + 1;
+                }
+            }
+        }
+        System.out.println(count);
+		
+	}
+
+	private static String convertBack(int num) {
+		if (num == 0) return "a";
+		StringBuilder sb = new StringBuilder();
+		while (num > 0) {
+			sb.append((char)('a' + num % 26));
+			num /= 26;
+		}
+		return sb.reverse().toString();
+	}
+
+
+	private static int convert(String s) {
+		int res = 0;
+		for (char c : s.toCharArray()) {
+			res = res * 26 + c - 'a';
+		}
+		return res;
+	}
+
+
+}

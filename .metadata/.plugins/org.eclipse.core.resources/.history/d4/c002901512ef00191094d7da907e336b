@@ -1,0 +1,59 @@
+package hawei;
+
+import java.util.Scanner;
+
+public class Addition26 {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String first = scanner.next();
+		String second = scanner.next();
+		// Method 1
+//		int num1 = convert(first);
+//		int num2 = convert(second);
+//		String res = convertBack(num1 + num2);
+//		System.out.println(res);
+		
+		// Method 2
+		String res = helper(first, second);
+		System.out.println(res);
+		scanner.close();
+		
+	}
+	
+	private static String helper(String a, String b) {
+		StringBuilder sb = new StringBuilder();
+		int pointA = a.length() - 1, pointB = b.length() - 1;
+		int addOn = 0;
+		while (pointA >= 0 || pointB >= 0 || addOn != 0) {
+			int val = addOn;
+			if (pointA >= 0) {
+				val += a.charAt(pointA--);
+			}
+			if (pointB >= 0) {
+				val += b.charAt(pointB--);
+			}
+			addOn = val >= 26 ? 1 : 0;
+			sb.append((char)(val % 26));
+		}
+		return sb.reverse().toString();
+	}
+
+	private static String convertBack(int num) {
+		if (num == 0) return "a";
+		StringBuilder sb = new StringBuilder();
+		while (num > 0) {
+			sb.append((char)('a' + num % 26));
+			num /= 26;
+		}
+		return sb.reverse().toString();
+	}
+
+
+	private static int convert(String s) {
+		int res = 0;
+		for (char c : s.toCharArray()) {
+			res = res * 26 + c - 'a';
+		}
+		return res;
+	}
+}

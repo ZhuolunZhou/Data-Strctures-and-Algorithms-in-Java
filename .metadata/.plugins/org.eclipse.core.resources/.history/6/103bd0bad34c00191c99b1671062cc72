@@ -1,0 +1,65 @@
+package laiOffer;
+import java.util.*;
+
+public class Permutations {
+//	public List<String> permutations(String set) {
+//		List<String> result = new ArrayList<>();
+//		if (set == null) {
+//			return result;
+//		}
+//		StringBuilder sb = new StringBuilder();
+//		char[] charArr = set.toCharArray();
+//		boolean[] used = new boolean[charArr.length];
+//		helper(charArr, 0, sb, used, result);
+//		return result;
+//	}
+//
+//	private void helper(char[] charArr, int index, StringBuilder sb, boolean[] used, List<String> result) {
+//		if (index == charArr.length) {
+//			result.add(sb.toString());
+//			return;
+//		}
+//		for (int i = 0; i < charArr.length; i++) {
+//			if (!used[i]) {
+//				used[i] = true;
+//				sb.append(charArr[i]);
+//				helper(charArr, index + 1, sb, used, result);
+//				sb.deleteCharAt(sb.length() - 1);
+//				used[i] = false; 
+//			}
+//		}
+//	}
+	
+	public List<String> permutations(String set) {
+	    List<String> result = new ArrayList<>();
+	    if (set == null) {
+	      return result;
+	    }
+	    char[] array = set.toCharArray();
+	    Arrays.sort(array);
+	    permutation(array, 0, result);
+	    return result;
+	  }
+	                
+	  private void permutation(char[] array, int index, List<String> result) {
+	    if (index == array.length) {
+	      result.add(new String(array));
+	      return;
+	    }
+	    //Set<Character> set = new HashSet<>(); // each position can only has one unique character
+	    for (int i = index; i < array.length; i++) {
+	      //if (set.add(array[i])) {
+	      if (i == 0 || array[i] != array[i - 1]) {
+	        swap(array, index, i);
+	        permutation(array, index + 1, result);
+	        swap(array, index, i);
+	      }   
+	    }
+	  }
+	                
+	  private void swap(char[] array, int a, int b) {
+	    char temp = array[a];
+	    array[a] = array[b];
+	    array[b] = temp;
+	  }
+}

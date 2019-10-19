@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class TestBench {
+
+	public static void main(String[] args) {
+		
+	}
+
+	public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        int m = image.length, n = image[0].length;
+        int origColor = image[sr][sc];
+        image[sr][sc] = newColor;
+        boolean visited = new boolean[m][n];
+        visited[sr][sc] = true;
+        dfs(image, sr, sc, origColor, newColor, m n, visited);
+    }
+    
+    private void dfs(int[][] image, int x, int y, int origColor, int newColor, int m, int n, boolean[][] visited) {
+        for (int[] dir : DIRS) {
+            int newX = x + dir[0], newY = y + dir[1];
+            if (newX >= 0 && newX < m && newY >= 0 && newY < n && image[newX][newY] == origColor && !visited[newX][newY]) {
+                visited[newX][newY] = true;
+                image[newX][newY] = newColor;
+                dfs(image, newX, newY, origColor, newColor, m, n, visited);
+            }
+        }
+    }
+}

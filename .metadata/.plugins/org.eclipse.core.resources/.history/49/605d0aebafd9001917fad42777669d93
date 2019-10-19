@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class TestBench {
+	
+	public static void main(String[] args) {
+
+		List<List<Integer>> result = new ArrayList<>();
+		List<Integer> cur = new ArrayList<>();
+		cur.add(1);
+		cur.add(2);
+		result.add(cur);
+		cur.remove(1);
+		System.out.println(result);
+	}
+
+	
+}

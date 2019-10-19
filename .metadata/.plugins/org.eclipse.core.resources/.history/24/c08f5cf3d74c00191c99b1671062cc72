@@ -1,0 +1,66 @@
+package laiOffer;
+import java.util.*;
+
+import laiOffer.WordSearch.Cell;
+
+public class TestBench {
+
+	public static void main(String[] args) {
+//		Permutations permu = new Permutations();
+//		String s = "abc";
+//		List<String> result = new ArrayList<>();
+//		result = permu.permutations(s);
+//		for (String str : result) {
+//			System.out.println(str);
+//		}
+//		Combinations c = new Combinations();
+//		int[] array = new int[] {2, 1, 3, 4};
+//		List<List<Integer>> result = c.combine(array, 4);
+//		
+//		ValidParenthesis vp = new ValidParenthesis();
+//		List<String> result = vp.validParentheses(1, 1, 0);
+//		
+//		for (int j = 0; j < result.size(); j++) {
+//			System.out.print(result.get(j) + " ");
+//		}		
+//		AllFactors a = new AllFactors();
+//		a.factors(100);
+//		NQueens nq = new NQueens();
+//		System.out.println(nq.nqueens(8));
+//		Maze mz = new Maze();
+//		int[][] result = mz.maze(5);
+//		for (int i = 0; i < result.length; i++) {
+//			for (int j = 0; j < result[0].length; j++) {
+//				System.out.print(result[i][j]);
+//			}
+//			System.out.println();
+//		}
+//		CombinationSumII cs = new CombinationSumII();
+//		int[] num = {10,1,2,7,6,1,5};
+//		List<List<Integer>> result = cs.combinationSum2(num, 8);
+//		for (List<Integer> l : result) {
+//			for (Integer i : l) {
+//				System.out.print(i + " ");
+//			}
+//			System.out.println();
+//		}
+//		char[][] board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+//		WordSearch ws = new WordSearch();
+//		char[][] board = {{'A','B'},{'C','D'}};
+//		System.out.println(ws.isWord(board, "ABCB"));
+//		System.out.println(ws.isWord(board, "ABDC"));
+		PermutationInString ps = new PermutationInString();
+		//System.out.println(ps.containsPermutation(, ));
+		String s1 = "evol";
+		String s2 = "ilovegoogle";
+		System.out.println(ps.hasSubstring(s1.toCharArray(), s2));
+	}
+
+}
+
+
+
+
+
+
+
