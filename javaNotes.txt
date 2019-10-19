@@ -1,0 +1,13 @@
+OOP特性：Encapsulation, Inheritance, Polymorphism 
+
+
+Nested class:
+1. static nested class
+2. non-static nested class (inner class)
+3. local inner class (non-static class inside a method)
+4. anonymous class (local inner class without a name)
+
+Inheritance (hidden vs overridden)
+  hidden: 父类的实例变量和类变量能被子类的同名变量隐藏
+          父类的静态方法被子类的同名静态方法隐藏
+  overridden: 父类的实例方法被子类的同名实例方法覆盖
